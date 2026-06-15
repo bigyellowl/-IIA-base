@@ -89,8 +89,7 @@ def main(args):
         "The simple_speaker_listener scenario can not use shared policy. Please check the config.py.")
 
     # cuda
-    # if all_args.cuda and torch.cuda.is_available():
-    if False:
+    if all_args.cuda and torch.cuda.is_available():
         print("choose to use gpu...")
         device = torch.device("cuda:0")
         torch.set_num_threads(all_args.n_training_threads)

@@ -21,8 +21,7 @@ sys.path.append(_TARGF_DIR)
 from Algorithms.BallSDE import marginal_prob_std, diffusion_coeff
 
 obs = 0.5
-# device = "cuda:0"
-device = "cpu"
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
 class CPU_Unpickler(pickle.Unpickler):
     def find_class(self, module, name):
