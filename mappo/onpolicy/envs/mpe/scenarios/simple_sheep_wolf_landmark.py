@@ -14,7 +14,10 @@ import functools
 import os
 from matplotlib import pyplot as plt
 
-sys.path.append('/root/exp1/targfupdate/')
+# Resolve the repo's targfupdate/ relative to THIS file (was hardcoded to /root/exp1).
+_TARGF_DIR = os.path.normpath(os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', '..', '..', 'targfupdate'))
+sys.path.append(_TARGF_DIR)
 from Algorithms.BallSDE import marginal_prob_std, diffusion_coeff
 
 obs = 0.5
@@ -356,7 +359,7 @@ class Scenario(BaseScenario):
 
     def load_target_score(self, num_objs, max_action):
         diffusion_coeff_func = functools.partial(diffusion_coeff, sigma=25)
-        tar_path = '/root/exp1/targfupdate/score_wolf2.pt'
+        tar_path = os.path.join(_TARGF_DIR, 'score_wolf2.pt')
         with open(tar_path, 'rb') as f:
             # score_target = pickle.load(f)
             score_target = CPU_Unpickler(f).load()
@@ -364,7 +367,7 @@ class Scenario(BaseScenario):
     
     def load_target_score_wall(self, num_objs, max_action):
         diffusion_coeff_func = functools.partial(diffusion_coeff, sigma=25)
-        tar_path = '/root/exp1/targfupdate/score_wall2_fc.pt'
+        tar_path = os.path.join(_TARGF_DIR, 'score_wall2_fc.pt')
         with open(tar_path, 'rb') as f:
             # score_target = pickle.load(f)
             score_target = CPU_Unpickler(f).load()
