@@ -89,7 +89,10 @@ def main(args):
         "The simple_speaker_listener scenario can not use shared policy. Please check the config.py.")
 
     # cuda
-    if all_args.cuda and torch.cuda.is_available():
+    # Forced CPU: this scenario is CPU-bound (the GF score-model forwards dominate),
+    # and enabling GPU here causes a device mismatch in ppo_update AND a CUDA+fork
+    # deadlock with SubprocVecEnv. Real speedup = batch the GF calls, not GPU.
+    if False:  # was: if all_args.cuda and torch.cuda.is_available():
         print("choose to use gpu...")
         device = torch.device("cuda:0")
         torch.set_num_threads(all_args.n_training_threads)

@@ -21,7 +21,7 @@ sys.path.append(_TARGF_DIR)
 from Algorithms.BallSDE import marginal_prob_std, diffusion_coeff
 
 obs = 0.5
-device = "cuda:0" if torch.cuda.is_available() else "cpu"
+device = "cpu"  # GF score models on CPU (small; GPU adds per-call overhead and deadlocks SubprocVecEnv fork)
 
 class CPU_Unpickler(pickle.Unpickler):
     def find_class(self, module, name):
