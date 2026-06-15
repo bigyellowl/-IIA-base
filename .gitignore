@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# IDE / OS / misc
+.idea/
+.vscode/
+.Rhistory
+*.bak
+
+# Experiment outputs (regeneratable)
+*.log
+*.log.raw
+*.csv
+**/results/
+models_*/
+**/checkpoints/
+**/logs/
+
+# NOTE: trained GF score models (targfupdate/*.pt, *.pkl) are NOT ignored —
+# they are needed to run agent training and are small.
