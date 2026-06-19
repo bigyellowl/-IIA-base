@@ -1,5 +1,7 @@
 import numpy as np
-import seaborn as sns
+# import seaborn as sns  # removed: unused here (only commented usages below); it drags in
+# matplotlib -> ipywidgets -> ipykernel -> psutil, and a broken psutil C-ext crashes the
+# SubprocVecEnv workers ("ConnectionResetError"). Training does not need seaborn.
 
 # physical/external base state of all entites
 class EntityState(object):
